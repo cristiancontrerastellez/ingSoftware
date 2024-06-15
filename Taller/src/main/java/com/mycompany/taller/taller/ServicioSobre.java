@@ -16,11 +16,9 @@ public class ServicioSobre extends Servicio {
 
     @Override
     public float calcularCosto(float peso, float valorDeclarado, boolean internacional) {
-        // Implementación del cálculo del costo para sobres
-        // Ejemplo de implementación (ajustar según la lógica de negocio):
-        float costo = peso * 10 + valorDeclarado * 0.05f;
+        float costo = 5000 + 10000;
         if (internacional) {
-            costo += 15;
+            costo *= 1.25;
         }
         return costo;
     }

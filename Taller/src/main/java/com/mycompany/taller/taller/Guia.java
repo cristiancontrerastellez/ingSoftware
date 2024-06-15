@@ -8,6 +8,7 @@ package com.mycompany.taller.taller;
  *
  * @author Cristian
  */
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Guia {
@@ -19,8 +20,8 @@ public class Guia {
     private float valorDeclarado;
     private String dhl;
     private Servicio paquete;
-    private Destinatario destinatario; // Añadido
-    private Remitente remitente; // Añadido
+    private Destinatario destinatario;
+    private Remitente remitente;
 
     // Getters y Setters
     public int getNumero() {
@@ -87,28 +88,55 @@ public class Guia {
         this.paquete = paquete;
     }
 
-    public Destinatario getDestinatario() { // Añadido
+    public Destinatario getDestinatario() {
         return destinatario;
     }
 
-    public void setDestinatario(Destinatario destinatario) { // Añadido
+    public void setDestinatario(Destinatario destinatario) {
         this.destinatario = destinatario;
     }
 
-    public Remitente getRemitente() { // Añadido
+    public Remitente getRemitente() {
         return remitente;
     }
 
-    public void setRemitente(Remitente remitente) { // Añadido
+    public void setRemitente(Remitente remitente) {
         this.remitente = remitente;
     }
 
     // Métodos
     public float calcularCosto() {
-        return paquete.calcularCosto(peso, valorDeclarado, false);
+        return paquete.calcularCosto(peso, valorDeclarado, dhl != null && !dhl.isEmpty());
     }
 
     public void cambiarEstado(EstadoGuia nuevoEstado) {
         this.estado = nuevoEstado;
+    }
+
+    public void imprimirInformacion() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println("FORMATO PARA ENVIOS POR MENSAJERIA");
+        System.out.println("No ENVIO: " + numero + "      FECHA: " + sdf.format(fecha));
+        System.out.println("DATOS DEL DESTINATARIO");
+        System.out.println("COMPANIA: " + destinatario.getCompania());
+        System.out.println("CONTACTO (NOMBRE COMPLETO): " + destinatario.getNombre());
+        System.out.println("DIRECCION: " + destinatario.getDireccion());
+        System.out.println("TELEFONOS: " + destinatario.getTelefono());
+        System.out.println("DATOS DEL REMITENTE");
+        System.out.println("NOMBRE: " + remitente.getNombre());
+        System.out.println("DEPARTAMENTO: " + remitente.getDepartamento());
+        System.out.println("TELEFONO O EXTENSION: " + remitente.getTelefono());
+        System.out.println("DATOS DEL PAQUETE");
+        System.out.println("SOBRE: " + (paquete instanceof ServicioSobre ? "X" : ""));
+        System.out.println("CAJA: " + (paquete instanceof ServicioCaja ? "X" : ""));
+        System.out.println("PAQUETE: " + (paquete instanceof ServicioPaquete ? "X" : ""));
+        System.out.println("CANTIDAD: " + cantidad);
+        System.out.println("PESO APROX.: " + peso);
+        System.out.println("MENSAJERIA: " + (dhl != null && !dhl.isEmpty() ? "DHL: X" : ""));
+        System.out.println("DESCRIPCION BREVE DE LA MERCANCIA: ");
+        System.out.println("Estado: " + estado);
+        System.out.println("Valor Declarado: " + valorDeclarado);
+        System.out.println("Costo Total: " + calcularCosto());
+        System.out.println("-----------------------------------------");
     }
 }

@@ -16,13 +16,10 @@ public class ServicioPaquete extends Servicio {
 
     @Override
     public float calcularCosto(float peso, float valorDeclarado, boolean internacional) {
-        // Implementación del cálculo del costo para paquetes
-        // Ejemplo de implementación (ajustar según la lógica de negocio):
-        float costo = peso * 20 + valorDeclarado * 0.1f;
+        float costo = 5000 + peso * 10000; // Ajustado
         if (internacional) {
-            costo += 25;
+            costo *= 1.25;
         }
         return costo;
     }
 }
-

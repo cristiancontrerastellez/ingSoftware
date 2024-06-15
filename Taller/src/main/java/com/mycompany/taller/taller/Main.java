@@ -14,7 +14,7 @@ public class Main {
         Remitente remitente = new Remitente();
         remitente.setNombre("Cristian Contreras");
         remitente.setDepartamento("Cesar");
-        remitente.setTelefono("999999");
+        remitente.setTelefono("123-456-7890");
 
         // Crear destinatario
         Destinatario destinatario = new Destinatario();
@@ -34,27 +34,30 @@ public class Main {
         guia.setCantidad(1);
         guia.setEstado(EstadoGuia.DESPACHO);
         guia.setValorDeclarado(100.0f);
-        guia.setDhl("123456789");
+        guia.setDhl("123456789"); // Si es internacional
         guia.setPaquete(servicioSobre);
-        guia.setDestinatario(destinatario); // Añadido
-        guia.setRemitente(remitente); // Añadido
+        guia.setDestinatario(destinatario);
+        guia.setRemitente(remitente);
 
         // Registrar guía en el sistema de envíos
         sistemaDeEnvios.registrarGuia(guia);
 
-        // Consultar guías por estado
-        System.out.println("Guias en estado DESPACHO:");
-        for (Guia g : sistemaDeEnvios.consultarGuiasPorEstado(EstadoGuia.DESPACHO)) {
-            System.out.println("Guia número: " + g.getNumero());
-        }
+        // Imprimir la guía
+        guia.imprimirInformacion();
 
         // Registrar entrega de la guía
         sistemaDeEnvios.registrarEntrega(1);
 
         // Consultar guías por estado FINALIZADA
-        System.out.println("Guias en estado FINALIZADA:");
-        for (Guia g : sistemaDeEnvios.consultarGuiasPorEstado(EstadoGuia.FINALIZADA)) {
-            System.out.println("Guia número: " + g.getNumero());
-        }
+        //System.out.println("Guias en estado FINALIZADA:");
+        //for (Guia g : sistemaDeEnvios.consultarGuiasPorEstado(EstadoGuia.FINALIZADA)) {
+        //    g.imprimirInformacion();
+        //}
+
+        // Consultar guías por destinatario
+        //System.out.println("Guias para el destinatario Jane Smith:");
+        //for (Guia g : sistemaDeEnvios.consultarGuiasPorDestinatario("Jane Smith")) {
+        //    g.imprimirInformacion();
+        //}
     }
 }

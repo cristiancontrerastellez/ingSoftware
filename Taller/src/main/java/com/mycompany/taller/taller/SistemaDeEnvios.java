@@ -23,6 +23,7 @@ public class SistemaDeEnvios {
         for (Guia guia : guias) {
             if (guia.getNumero() == numeroGuia) {
                 guia.cambiarEstado(EstadoGuia.FINALIZADA);
+                System.out.println("Guía " + numeroGuia + " entregada. Costo del servicio: " + guia.calcularCosto());
                 break;
             }
         }
@@ -48,4 +49,3 @@ public class SistemaDeEnvios {
         return resultado;
     }
 }
-
